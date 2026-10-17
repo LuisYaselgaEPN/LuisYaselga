@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio profesional de Luis Fernando Yaselga Moreira - Estudiante de Ingeniería en Sistemas de Información (EPN). Especialista en modelado de datos, lógica computacional y disciplina operativa.">
+  <meta name="author" content="Luis Fernando Yaselga Moreira">
+  <title>Luis Fernando Yaselga Moreira | Portafolio Digital & CV</title>
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & TOKENS (HCI & WCAG AA)
+       ========================================================================== */
+    :root {
+      /* Color Palette: Dark slate/navy foundation with high-contrast electric accents */
+      --bg-base: #0a0e17;
+      --bg-surface: #111827;
+      --bg-surface-elevated: #1f293d;
+      --bg-card: rgba(17, 24, 39, 0.85);
+      --bg-card-hover: rgba(31, 41, 61, 0.95);
+      
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(56, 189, 248, 0.28);
+      --border-focus: #38bdf8;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-inverse: #0a0e17;
+
+      --accent-cyan: #38bdf8;       /* Tech cyan - WCAG AA against dark */
+      --accent-blue: #3b82f6;       /* Systems blue */
+      --accent-navy: #1e3a8a;       /* Deep navy */
+      --accent-emerald: #10b981;    /* System operational stability */
+      --accent-amber: #f59e0b;      /* Highlights */
+
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 12px 28px -4px rgba(0, 0, 0, 0.5), 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+      --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.18);
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Reset & Base Setup */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-base);
+      color: var(--text-secondary);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Tech ambient gradient background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -20%;
+      left: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: -20%;
+      right: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Accessibility: Skip Link (WCAG 2.4.1) */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--accent-cyan);
+      color: var(--text-inverse);
+      padding: 0.75rem 1.25rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      z-index: 9999;
+      transition: top var(--transition-fast);
+      text-decoration: none;
+      box-shadow: var(--shadow-lg);
+    }
+    .skip-link:focus {
+      top: 1rem;
+      outline: 3px solid #fff;
+    }
+
+    /* Global Keyboard Focus Affordance (WCAG 2.4.7) */
+    :focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 3px;
+    }
+
+    /* Layout Constraints */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Typography Hierarchy */
+    h1, h2, h3, h4 {
+      color: var(--text-primary);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw + 1rem, 3.25rem);
+      letter-spacing: -0.025em;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    p {
+      max-width: 68ch; /* Optimal line-length for cognitive reading comfort */
+      margin-bottom: 1rem;
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION (Sticky with visual feedback)
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 14, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background-color var(--transition-normal);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.5rem;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: linear-gradient(135deg, #1e3a8a, #0284c7);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      font-weight: 500;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.5rem 0.875rem;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: var(--accent-cyan);
+      background: rgba(56, 189, 248, 0.1);
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 0.5rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       BUTTONS & AFFORDANCES
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 1px solid transparent;
+      line-height: 1;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #0369a1, #1d4ed8);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      border-color: var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    .btn-sm {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ==========================================================================
+       HERO SECTION (High Impact & Value Proposition)
+       ========================================================================== */
+    .hero {
+      padding: 4.5rem 0 3.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      position: relative;
+    }
+
+    .hero-badge-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+    }
+
+    .status-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .hero-title {
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      color: var(--accent-cyan);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-pitch {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 76ch;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Key Metrics / Highlights Grid (HCI Chunking) */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .stat-card:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stat-number svg {
+      color: var(--accent-cyan);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       SECTION COMMON STYLES
+       ========================================================================== */
+    section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-eyebrow {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* ==========================================================================
+       COMPETENCIAS TÉCNICAS (Modular Badges & Micro-Interactions)
+       ========================================================================== */
+    .skills-category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .skill-category-card:hover {
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-glow);
+      transform: translateY(-3px);
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .category-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: rgba(56, 189, 248, 0.1);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+
+    .category-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .skill-badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      list-style: none;
+    }
+
+    .skill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all var(--transition-fast);
+      cursor: default;
+    }
+
+    .skill-badge:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-cyan);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .skill-badge-primary {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.4);
+      color: #93c5fd;
+      font-weight: 600;
+    }
+
+    .skill-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       EXPERIENCIA Y PROYECTOS (Structured Cards: Context -> Tech -> Impact)
+       ========================================================================== */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .exp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exp-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent-cyan), var(--accent-blue));
+      opacity: 0.8;
+      transition: width var(--transition-fast);
+    }
+
+    .exp-card:hover {
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+
+    .exp-card:hover::before {
+      width: 6px;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .exp-title-group h3 {
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .exp-organization {
+      font-size: 0.95rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .exp-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    /* Triad structure: Context -> Stack -> Impact */
+    .exp-triad {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .triad-block {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+    }
+
+    .triad-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .triad-text {
+      font-size: 0.925rem;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+      max-width: none;
+    }
+
+    .triad-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      list-style: none;
+    }
+
+    .triad-tag {
+      font-size: 0.75rem;
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ==========================================================================
+       FORMACIÓN ACADÉMICA (Timeline / Structured Cards)
+       ========================================================================== */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .edu-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .edu-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .edu-period {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-title {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-inst {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .edu-details {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       FORTALEZAS CONDUCTUALES Y CLAVE
+       ========================================================================== */
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .strength-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .strength-card:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-3px);
+    }
+
+    .strength-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      background: rgba(16, 185, 129, 0.12);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #34d399;
+    }
+
+    .strength-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .strength-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    /* ==========================================================================
+       CONTACTO ACCESIBLE CON INTERACCIÓN RÁPIDA (Copy Feedback)
+       ========================================================================== */
+    .contact-card-wrapper {
+      background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(30, 58, 138, 0.25));
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.25rem;
+      transition: all var(--transition-fast);
+    }
+
+    .contact-item:hover {
+      border-color: var(--border-accent);
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .contact-left {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .contact-icon {
+      color: var(--accent-cyan);
+    }
+
+    .contact-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-val {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .contact-val:hover {
+      color: var(--accent-cyan);
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    /* Toast Notification for Clipboard */
+    .toast-notification {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--bg-surface-elevated);
+      color: #fff;
+      border: 1px solid var(--accent-cyan);
+      padding: 0.85rem 1.25rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 9999;
+      transform: translateY(150%);
+      opacity: 0;
+      transition: all var(--transition-normal);
+      pointer-events: none;
+    }
+
+    .toast-notification.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .site-footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-base);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-badges {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .compliance-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Back to top button */
+    .btn-top {
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      padding: 0.5rem;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-top:hover {
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE & PRINT MEDIA QUERIES
+       ========================================================================== */
+    @media (max-width: 860px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-menu {
+        display: none;
+      }
+      .nav-menu.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 1.5rem;
+        gap: 0.75rem;
+        box-shadow: var(--shadow-lg);
+      }
+      .menu-toggle {
+        display: inline-flex;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #111827 !important;
+      }
+      .site-header, .hero-actions, .toast-notification, .btn-top, .skip-link, .menu-toggle {
+        display: none !important;
+      }
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .stat-card, .skill-category-card, .exp-card, .edu-card, .strength-card, .contact-card-wrapper, .triad-block {
+        background: #ffffff !important;
+        border: 1px solid #d1d5db !important;
+        color: #111827 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+      }
+      h1, h2, h3, h4, .stat-number, .category-title, .exp-title-group h3, .edu-title, .contact-val {
+        color: #0f172a !important;
+      }
+      .exp-card::before {
+        display: none;
+      }
+      .skill-badge {
+        border: 1px solid #9ca3af !important;
+        color: #1f2937 !important;
+        background: #f3f4f6 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header" role="banner">
+    <div class="container nav-container">
+      <a href="#inicio" class="brand-link" aria-label="Inicio - Luis Fernando Yaselga Moreira">
+        <div class="brand-avatar" aria-hidden="true">LY</div>
+        <div class="brand-text">
+          <span class="brand-name">Luis Fernando Yaselga</span>
+          <span class="brand-subtitle">Ing. Sistemas de Información (EPN)</span>
+        </div>
+      </a>
+
+      <!-- Desktop & Mobile Navigation Links -->
+      <nav id="primary-navigation" class="nav-menu" aria-label="Navegación principal">
+        <a href="#sobre-mi" class="nav-link">Perfil</a>
+        <a href="#competencias" class="nav-link">Competencias</a>
+        <a href="#experiencia" class="nav-link">Experiencia & Proyectos</a>
+        <a href="#formacion" class="nav-link">Educación</a>
+        <a href="#fortalezas" class="nav-link">Fortalezas</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-sm" onclick="window.print()" aria-label="Descargar o imprimir versión para contratación">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span>Imprimir CV</span>
+        </button>
+
+        <button class="menu-toggle" id="menu-toggle-btn" aria-expanded="false" aria-controls="primary-navigation" aria-label="Abrir menú de navegación">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Anchor -->
+  <main id="main-content">
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        
+        <div class="hero-badge-wrap">
+          <div class="status-pill" role="status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Disponible para pasantías técnicas & proyectos</span>
+          </div>
+          <div class="location-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Quito, Ecuador</span>
+          </div>
+        </div>
+
+        <h1 id="hero-title" class="hero-title">Luis Fernando Yaselga Moreira</h1>
+        <p class="hero-subtitle">Estudiante de 5to Semestre de Ingeniería en Sistemas de Información • EPN</p>
+
+        <!-- Propuesta de Valor -->
+        <p class="hero-pitch">
+          Sólida formación en <strong>lógica computacional, modelado y bases de datos estructuradas (SQL)</strong>, con enfoque en la seguridad e integridad de la información institucional. Combino el análisis formal de sistemas con <strong>disciplina operativa, resiliencia y rigor metodológico</strong> adquiridos en entornos de alta exigencia física y técnica.
+        </p>
+
+        <!-- Call to Action Buttons -->
+        <div class="hero-actions">
+          <a href="#contacto" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            <span>Iniciar Contacto</span>
+          </a>
+
+          <button class="btn btn-secondary" onclick="copyToClipboard('luisfyaselga@hotmail.com', 'Correo')" aria-label="Copiar dirección de correo al portapapeles">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+            </svg>
+            <span>Copiar Correo</span>
+          </button>
+
+          <button class="btn btn-secondary" onclick="copyToClipboard('0987161384', 'Teléfono')" aria-label="Copiar número de teléfono al portapapeles">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>0987161384</span>
+          </button>
+        </div>
+
+        <!-- Atributos Operativos / Chunking de alto impacto -->
+        <div class="stats-grid" role="region" aria-label="Métricas destacadas del perfil">
+          <div class="stat-card">
+            <div class="stat-number">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              <span>5to Semestre</span>
+            </div>
+            <div class="stat-label">Ingeniería en Sistemas de Información (Escuela Politécnica Nacional)</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+              <span>SQL & Datos</span>
+            </div>
+            <div class="stat-label">Modelado lógico y relacional con foco en consistencia institucional</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span>Cero Incidencias</span>
+            </div>
+            <div class="stat-label">Apego estricto a protocolos y contingencias en operaciones en vivo</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ / PROPUESTA -->
+    <section id="sobre-mi" aria-labelledby="sobre-mi-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Perfil y Enfoque</p>
+          <h2 id="sobre-mi-title">Rigor Analítico y Disciplina en Operaciones</h2>
+        </div>
+        <p>
+          Como estudiante avanzado de 5to semestre en la Escuela Politécnica Nacional, oriento mi desarrollo profesional hacia el diseño robusto de arquitecturas de datos, aseguramiento de la integridad transaccional y la formalización técnica de sistemas.
+        </p>
+        <p>
+          A diferencia de perfiles exclusivamente teóricos, mi trayectoria integra experiencia en logística de obra civil y soporte técnico de conectividad y señal en tiempo real. Este trasfondo me ha inculcado una tolerancia probada al estrés operativo, responsabilidad absoluta frente a cronogramas críticos y una visión metódica para prevenir contingencias antes de que impacten a los usuarios finales.
+        </p>
+      </div>
+    </section>
+
+    <!-- COMPETENCIAS TÉCNICAS (CHUNKING MODULAR) -->
+    <section id="competencias" aria-labelledby="competencias-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Stack Tecnológico & Habilidades</p>
+          <h2 id="competencias-title">Competencias Técnicas Modulares</h2>
+          <p class="section-desc">Estructuración por dominios de conocimiento técnico e interacción con sistemas:</p>
+        </div>
+
+        <div class="skills-category-grid">
+
+          <!-- Lenguajes -->
+          <article class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <h3 class="category-title">Lenguajes de Programación</h3>
+            </div>
+            <p class="skill-desc">Construcción de lógica algorítmica, manejo de memoria, programación estructurada y orientada a objetos.</p>
+            <ul class="skill-badge-list">
+              <li class="skill-badge skill-badge-primary">Java</li>
+              <li class="skill-badge skill-badge-primary">C++</li>
+              <li class="skill-badge skill-badge-primary">Python</li>
+              <li class="skill-badge skill-badge-primary">SQL</li>
+            </ul>
+          </article>
+
+          <!-- Datos & Modelado -->
+          <article class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                  <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                  <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                </svg>
+              </div>
+              <h3 class="category-title">Bases de Datos & Arquitectura</h3>
+            </div>
+            <p class="skill-desc">Definición de esquemas, normalización y optimización de consultas asegurando consistencia ACID.</p>
+            <ul class="skill-badge-list">
+              <li class="skill-badge">Modelado Relacional</li>
+              <li class="skill-badge">Consultas Estructuradas SQL</li>
+              <li class="skill-badge">Diseño Entidad-Relación (E-R)</li>
+              <li class="skill-badge">Integridad de Datos</li>
+            </ul>
+          </article>
+
+          <!-- Documentación & Diagramación -->
+          <article class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <h3 class="category-title">Documentación & Diagramación</h3>
+            </div>
+            <p class="skill-desc">Formalización técnica rigurosa de especificaciones y modelos conceptuales de software.</p>
+            <ul class="skill-badge-list">
+              <li class="skill-badge">LaTeX (Documentación técnica formal)</li>
+              <li class="skill-badge">Draw.io (UML & Flujos de proceso)</li>
+              <li class="skill-badge">Diagramas de Arquitectura</li>
+            </ul>
+          </article>
+
+          <!-- Redes & Conectividad -->
+          <article class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+              </div>
+              <h3 class="category-title">Redes & Telecomunicaciones</h3>
+            </div>
+            <p class="skill-desc">Comprensión de los niveles del modelo OSI/TCP-IP, enrutamiento básico e infraestructura física.</p>
+            <ul class="skill-badge-list">
+              <li class="skill-badge">Fundamentos de Redes</li>
+              <li class="skill-badge">Cisco Networking</li>
+              <li class="skill-badge">Cableado Estructurado</li>
+              <li class="skill-badge">Verificación de Señal en Línea</li>
+            </ul>
+          </article>
+
+          <!-- Idiomas -->
+          <article class="skill-category-card">
+            <div class="category-header">
+              <div class="category-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+              </div>
+              <h3 class="category-title">Competencias Lingüísticas</h3>
+            </div>
+            <p class="skill-desc">Comunicación técnica fluida en español y formación académica continua en inglés técnico.</p>
+            <ul class="skill-badge-list">
+              <li class="skill-badge">Español: Nativo</li>
+              <li class="skill-badge">Inglés: Académico 1 (CEC EPN)</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA Y PROYECTOS (ESTRUCTURA DE IMPACTO) -->
+    <section id="experiencia" aria-labelledby="experiencia-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Trayectoria y Casos de Aplicación</p>
+          <h2 id="experiencia-title">Experiencia y Proyectos</h2>
+          <p class="section-desc">Estructurados bajo el marco de Contexto, Tecnologías y Métodos, e Impacto Obtenido:</p>
+        </div>
+
+        <div class="experience-list">
+
+          <!-- Proyecto 1: EPN -->
+          <article class="exp-card">
+            <header class="exp-header">
+              <div class="exp-title-group">
+                <h3>Proyectos Académicos de Sistemas de Información</h3>
+                <span class="exp-organization">Escuela Politécnica Nacional (EPN)</span>
+              </div>
+              <span class="exp-meta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>2024 – Presente</span>
+              </span>
+            </header>
+
+            <div class="exp-triad">
+              <div class="triad-block">
+                <div class="triad-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  <span>Contexto & Alcance</span>
+                </div>
+                <p class="triad-text">
+                  Desarrollo de proyectos de cátedra orientados al modelado computacional formal, análisis de procesos de negocio y diseño de arquitecturas de almacenamiento de datos robustas.
+                </p>
+              </div>
+
+              <div class="triad-block">
+                <div class="triad-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                  </svg>
+                  <span>Metodología & Herramientas</span>
+                </div>
+                <p class="triad-text">
+                  Diseño de esquemas lógicos y diagramación de clases y secuencia UML con <strong>Draw.io</strong>; redacción técnica estructurada en <strong>LaTeX</strong>; implementación algorítmica en <strong>C++, Java y Python</strong>.
+                </p>
+                <ul class="triad-tags">
+                  <li class="triad-tag">Draw.io</li>
+                  <li class="triad-tag">SQL</li>
+                  <li class="triad-tag">Modelado UML</li>
+                  <li class="triad-tag">LaTeX</li>
+                </ul>
+              </div>
+
+              <div class="triad-block">
+                <div class="triad-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Impacto & Resultados</span>
+                </div>
+                <p class="triad-text">
+                  Generación de bases de datos normalizadas con estricta integridad referencial, minimización de redundancias y optimización de sentencias SQL para un consumo eficiente de recursos del sistema.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Experiencia 2: Audio & Conectividad -->
+          <article class="exp-card">
+            <header class="exp-header">
+              <div class="exp-title-group">
+                <h3>Asistente Técnico de Conectividad y Audio en Vivo</h3>
+                <span class="exp-organization">Producción y Eventos Técnicos</span>
+              </div>
+              <span class="exp-meta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>Operaciones en Vivo</span>
+              </span>
+            </header>
+
+            <div class="exp-triad">
+              <div class="triad-block">
+                <div class="triad-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  <span>Contexto Operativo</span>
+                </div>
+                <p class="triad-text">
+                  Entornos de producción en vivo con alta exigencia de disponibilidad continua de enlace, sin margen para fallas durante la transmisión acústica y digital.
+                </p>
+              </div>
+
+              <div class="triad-block">
+                <div class="triad-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                  </svg>
+                  <span>Actividades & Métodos</span>
+                </div>
+                <p class="triad-text">
+                  Despliegue de cableado estructurado, ruteo físico seguro de líneas, monitoreo y comprobación instrumental de señales en tiempo real previo a la salida al aire.
+                </p>
+                <ul class="triad-tags">
+                  <li class="triad-tag">Cableado Estructurado</li>
+                  <li class="triad-tag">Calidad de Señal</li>
+                  <li class="triad-tag">Pruebas en Tiempo Real</li>
+                </ul>
+              </div>
+
+              <div class="triad-block">
+                <div class="triad-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Impacto & Resultados</span>
+                </div>
+                <p class="triad-text">
+                  Resolución metódica y calmada de contingencias de interferencia y corte de línea, logrando transmisiones limpias y confiabilidad técnica total en cada jornada.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Experiencia 3: Logística de Obra -->
+          <article class="exp-card">
+            <header class="exp-header">
+              <div class="exp-title-group">
+                <h3>Auxiliar Operativo de Obra y Logística</h3>
+                <span class="exp-organization">Proyectos Civiles y Logística de Materiales</span>
+              </div>
+              <span class="exp-meta">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Cero Incidencias</span>
+              </span>
+            </header>
+
+            <div class="exp-triad">
+              <div class="triad-block">
+                <div class="triad-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  <span>Contexto Operativo</span>
+                </div>
+                <p class="triad-text">
+                  Entorno de trabajo con alto nivel de demanda física, ritmos acelerados de entrega y estándares rigurosos de seguridad industrial.
+                </p>
+              </div>
+
+              <div class="triad-block">
+                <div class="triad-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                  </svg>
+                  <span>Responsabilidades & Disciplina</span>
+                </div>
+                <p class="triad-text">
+                  Suministro oportuno de suministros a cuadrillas bajo supervisión estricta, control de inventario en sitio y acatamiento de directrices operativas.
+                </p>
+                <ul class="triad-tags">
+                  <li class="triad-tag">Apego a Normas</li>
+                  <li class="triad-tag">Control de Flujo</li>
+                  <li class="triad-tag">Puntualidad Crítica</li>
+                </ul>
+              </div>
+
+              <div class="triad-block">
+                <div class="triad-label">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Impacto & Resultados</span>
+                </div>
+                <p class="triad-text">
+                  Cumplimiento del 100% de los cronogramas asignados con <strong>cero accidentes ni incidencias operativas</strong>, consolidando hábitos permanentes de disciplina y orden.
+                </p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMACIÓN ACADÉMICA -->
+    <section id="formacion" aria-labelledby="formacion-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Educación & Certificaciones</p>
+          <h2 id="formacion-title">Formación Académica</h2>
+        </div>
+
+        <div class="education-grid">
+          
+          <article class="edu-card">
+            <div>
+              <span class="edu-period">2024 – Presente (5to Semestre)</span>
+              <h3 class="edu-title">Ingeniería en Sistemas de Información</h3>
+              <p class="edu-inst">Escuela Politécnica Nacional (EPN) — Quito, Ecuador</p>
+              <p class="edu-details">
+                Formación orientada a estructuras de datos, diseño de bases de datos relacionales, interacción humano-computador, ingeniería de requerimientos y desarrollo de software con rigor matemático.
+              </p>
+            </div>
+          </article>
+
+          <article class="edu-card">
+            <div>
+              <span class="edu-period">Formación Complementaria</span>
+              <h3 class="edu-title">Inglés Académico 1</h3>
+              <p class="edu-inst">Centro de Educación Continua (CEC EPN)</p>
+              <p class="edu-details">
+                Desarrollo de competencias lingüísticas en comprensión técnica, redacción de informes académicos y comunicación oral en contextos internacionales.
+              </p>
+            </div>
+          </article>
+
+          <article class="edu-card">
+            <div>
+              <span class="edu-period">Graduado en 2023</span>
+              <h3 class="edu-title">Bachiller en Ciencias</h3>
+              <p class="edu-inst">Instituto Educativo Fiscal Benito Juárez — Quito, Ecuador</p>
+              <p class="edu-details">
+                Bases analíticas en ciencias exactas, lógica deductiva e iniciación temprana en resolución de problemas cuantitativos.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FORTALEZAS CONDUCTUALES (HCI VALUE PROPOSITION) -->
+    <section id="fortalezas" aria-labelledby="fortalezas-title">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Diferencial Conductual</p>
+          <h2 id="fortalezas-title">Fortalezas Clave</h2>
+          <p class="section-desc">Cualidades humanas y de desempeño transferibles a proyectos de alta responsabilidad:</p>
+        </div>
+
+        <div class="strengths-grid">
+
+          <article class="strength-card">
+            <div class="strength-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="strength-title">Rigor y Apego Normativo</h3>
+            <p class="strength-desc">Compromiso irrestricto con políticas de seguridad informática, protocolos de datos y estándares de calidad de software.</p>
+          </article>
+
+          <article class="strength-card">
+            <div class="strength-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="strength-title">Tolerancia al Estrés Operativo</h3>
+            <p class="strength-desc">Capacidad demostrada para mantener la claridad mental y el foco metódico en situaciones de contingencia y tiempos límite.</p>
+          </article>
+
+          <article class="strength-card">
+            <div class="strength-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <h3 class="strength-title">Pensamiento Estructurado</h3>
+            <p class="strength-desc">Facilidad para descomponer problemas sistémicos complejos en modelos lógicos trazables y diagramables.</p>
+          </article>
+
+          <article class="strength-card">
+            <div class="strength-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="strength-title">Trabajo Colaborativo</h3>
+            <p class="strength-desc">Comunicación proactiva y empatía funcional para coordinar esfuerzos con equipos multidisciplinarios de trabajo.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO Y CANALES -->
+    <section id="contacto" aria-labelledby="contacto-title">
+      <div class="container">
+        <div class="contact-card-wrapper">
+          <div class="contact-grid">
+            
+            <div>
+              <p class="section-eyebrow">Canales Directos</p>
+              <h2 id="contacto-title">Conversemos sobre Oportunidades Técnicas</h2>
+              <p>
+                Estoy disponible para incorporarme a equipos de tecnología, desarrollo o gestión de datos que valoren la honestidad profesional, la disciplina operativa y el aprendizaje continuo.
+              </p>
+              <p class="text-muted" style="font-size: 0.9rem;">
+                Respondo oportunamente vía correo electrónico o llamadas telefónicas.
+              </p>
+            </div>
+
+            <div class="contact-info-list" role="region" aria-label="Información de contacto directo">
+              
+              <!-- Correo -->
+              <div class="contact-item">
+                <div class="contact-left">
+                  <div class="contact-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-label">Correo Electrónico</div>
+                    <a href="mailto:luisfyaselga@hotmail.com" class="contact-val">luisfyaselga@hotmail.com</a>
+                  </div>
+                </div>
+                <div class="contact-actions">
+                  <button class="btn btn-secondary btn-sm" onclick="copyToClipboard('luisfyaselga@hotmail.com', 'Correo electrónico')" aria-label="Copiar correo luisfyaselga@hotmail.com">
+                    Copiar
+                  </button>
+                </div>
+              </div>
+
+              <!-- Teléfono -->
+              <div class="contact-item">
+                <div class="contact-left">
+                  <div class="contact-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-label">Teléfono Móvil</div>
+                    <a href="tel:0987161384" class="contact-val">0987161384</a>
+                  </div>
+                </div>
+                <div class="contact-actions">
+                  <button class="btn btn-secondary btn-sm" onclick="copyToClipboard('0987161384', 'Número telefónico')" aria-label="Copiar teléfono 0987161384">
+                    Copiar
+                  </button>
+                </div>
+              </div>
+
+              <!-- Ubicación -->
+              <div class="contact-item">
+                <div class="contact-left">
+                  <div class="contact-icon" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="contact-label">Residencia Actual</div>
+                    <span class="contact-val">Quito, Ecuador</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER SEMÁNTICO -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-content">
+      <div>
+        <p style="margin-bottom: 0.25rem; font-weight: 600; color: var(--text-primary);">
+          Luis Fernando Yaselga Moreira • 2026
+        </p>
+        <p style="margin-bottom: 0; font-size: 0.8rem;">
+          Ingeniería en Sistemas de Información — Escuela Politécnica Nacional
+        </p>
+      </div>
+
+      <div class="footer-badges">
+        <span class="compliance-badge" title="Cumple con accesibilidad web WCAG 2.1 nivel AA">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>WCAG 2.1 AA</span>
+        </span>
+        <span class="compliance-badge" title="Semántica pura y arquitectura autónoma">
+          <span>HTML5 / CSS3 / Vanilla JS</span>
+        </span>
+      </div>
+
+      <a href="#inicio" class="btn-top" aria-label="Volver al inicio de la página">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="19" x2="12" y2="5"></line>
+          <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast" class="toast-notification" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-message">Copiado al portapapeles</span>
+  </div>
+
+  <!-- NATIVE JAVASCRIPT LOGIC (FEEDBACK, NAVIGATION, AFFORDANCES) -->
+  <script>
+    // 1. Mobile Menu Toggle
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const primaryNav = document.getElementById('primary-navigation');
+
+    if (menuToggleBtn && primaryNav) {
+      menuToggleBtn.addEventListener('click', () => {
+        const isExpanded = menuToggleBtn.getAttribute('aria-expanded') === 'true';
+        menuToggleBtn.setAttribute('aria-expanded', !isExpanded);
+        primaryNav.classList.toggle('open');
+      });
+
+      // Close menu when a navigation item is clicked
+      primaryNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          primaryNav.classList.remove('open');
+          menuToggleBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // 2. Active Section Highlighting using IntersectionObserver
+    const navLinks = document.querySelectorAll('.nav-link');
+    const observedSections = document.querySelectorAll('section[id]');
+
+    if ('IntersectionObserver' in window && observedSections.length > 0) {
+      const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+      };
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const currentId = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              const href = link.getAttribute('href').replace('#', '');
+              if (href === currentId) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+              } else {
+                link.classList.remove('active');
+                link.removeAttribute('aria-current');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      observedSections.forEach(section => sectionObserver.observe(section));
+    }
+
+    // 3. Clipboard Interaction with Toast Notification (Microinteraction & Feedback)
+    let toastTimeout;
+    function copyToClipboard(text, label) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          triggerToast(`${label} copiado exitosamente al portapapeles`);
+        }).catch(() => {
+          fallbackCopyText(text, label);
+        });
+      } else {
+        fallbackCopyText(text, label);
+      }
+    }
+
+    function fallbackCopyText(text, label) {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      tempInput.style.position = 'fixed';
+      tempInput.style.opacity = '0';
+      document.body.appendChild(tempInput);
+      tempInput.focus();
+      tempInput.select();
+      try {
+        document.execCommand('copy');
+        triggerToast(`${label} copiado exitosamente`);
+      } catch (err) {
+        triggerToast(`No se pudo copiar automáticamente: ${text}`);
+      }
+      document.body.removeChild(tempInput);
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      if (!toast || !toastMessage) return;
+
+      toastMessage.textContent = message;
+      toast.classList.add('show');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3200);
+    }
+  </script>
+</body>
+</html>
